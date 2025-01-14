@@ -30,4 +30,25 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: ColorsManager.whiteColor,
   );
+
+  static TextStyle inter500lightGrey14 = TextStyle(
+    fontSize: 14.sp,
+    fontFamily: "Inter",
+    fontWeight: FontWeight.w500,
+    color: ColorsManager.lightGreyColor,
+  );
+
+  static TextStyle inter400primaryColor12 = TextStyle(
+    fontSize: 12.sp,
+    fontFamily: "Inter",
+    fontWeight: FontWeight.w400,
+    color: ColorsManager.primaryColor,
+  );
+
+  static TextStyle inter400textFormFieldInputColor11 = TextStyle(
+    fontSize: 11.sp,
+    fontFamily: "Inter",
+    fontWeight: FontWeight.w400,
+    color: ColorsManager.textFormFieldInputColor,
+  );
 }
