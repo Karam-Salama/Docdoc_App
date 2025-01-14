@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/utils/assets.dart';
 import '../../../core/utils/strings.dart';
-import '../../../core/utils/text_style.dart';
+import '../../../core/themeing/text_style.dart';
 
 class DoctorImageAndText extends StatelessWidget {
   const DoctorImageAndText({super.key});
