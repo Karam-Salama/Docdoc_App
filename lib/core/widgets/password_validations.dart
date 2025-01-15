@@ -1,10 +1,9 @@
 import 'package:doc_doc/core/utils/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/themeing/colors.dart';
-import '../../../../core/themeing/text_style.dart';
+import '../helpers/spacing.dart';
+import '../themeing/colors.dart';
+import '../themeing/text_style.dart';
 
 class PasswordValidations extends StatelessWidget {
   final bool hasLowerCase;
@@ -50,7 +49,6 @@ class PasswordValidations extends StatelessWidget {
         Text(
           text,
           style: AppTextStyles.inter400darkBlueColor11.copyWith(
-            fontSize: 13.sp,
             decoration: hasValidated ? TextDecoration.lineThrough : null,
             decorationColor: ColorsManager.primaryColor,
             decorationThickness: 2,

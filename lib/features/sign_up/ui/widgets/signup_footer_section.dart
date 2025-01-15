@@ -1,14 +1,14 @@
 import 'package:doc_doc/core/helpers/extensions.dart';
-import 'package:doc_doc/core/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/routes.dart';
+import '../../../../core/utils/strings.dart';
 import '../../../../core/widgets/have_or_not_account_text.dart';
 import '../../../../core/widgets/terms_and_conditions_text.dart';
 
-class LoginFooterSection extends StatelessWidget {
-  const LoginFooterSection({super.key});
+class SignUpFooterSection extends StatelessWidget {
+  const SignUpFooterSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,10 @@ class LoginFooterSection extends StatelessWidget {
           const TermsAndConditionsText(),
           verticalSpace(36),
           HaveOrNotAnAccountText(
-            textPart1: AppStrings.dontHaveAccount,
-            textPart2: AppStrings.signUp,
+            textPart1: AppStrings.alreadyHaveAccount,
+            textPart2: AppStrings.signIn,
             onTap: () {
-              context.pushNamed(Routes.signUpScreen);
+              context.pushNamed(Routes.loginScreen);
             },
           ),
         ],

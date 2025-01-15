@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/themeing/colors.dart';
-import '../../../../core/themeing/text_style.dart';
-import '../../../../core/utils/strings.dart';
+import '../themeing/colors.dart';
+import '../themeing/text_style.dart';
+import '../utils/strings.dart';
 
 class TermsAndConditionsText extends StatelessWidget {
   const TermsAndConditionsText({super.key});

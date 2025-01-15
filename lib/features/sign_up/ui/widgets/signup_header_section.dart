@@ -1,0 +1,34 @@
+// ignore_for_file: file_names
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/themeing/text_style.dart';
+import '../../../../core/utils/strings.dart';
+
+class SignUpHeaderSection extends StatelessWidget {
+  const SignUpHeaderSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 7.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppStrings.signUpCreateAccount,
+            style:
+                AppTextStyles.inter700primaryColor32.copyWith(fontSize: 24.sp),
+          ),
+          verticalSpace(8),
+          Text(
+            AppStrings.signUpSubtitle,
+            style: AppTextStyles.inter400greyColor10.copyWith(fontSize: 14.sp),
+          ),
+        ],
+      ),
+    );
+  }
+}
