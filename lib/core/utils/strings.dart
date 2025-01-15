@@ -18,4 +18,11 @@ abstract class AppStrings {
   static const termsAndConditionsPart2 = "Terms & Conditions ";
   static const termsAndConditionsPart3 = "and\n";
   static const termsAndConditionsPart4 = "Privacy Policy.";
+  // Password Validations
+  static const lowerLetterRequired = 'At least 1 lowercase letter';
+  static const upperLetterRequired = 'At least 1 uppercase letter';
+  static const specialCharacterRequired = 'At least 1 special character';
+  static const numberRequired = 'At least 1 number';
+  static const minLengthRequired = 'At least 8 characters long';
+  static const gotIt = 'Got it';
 }
