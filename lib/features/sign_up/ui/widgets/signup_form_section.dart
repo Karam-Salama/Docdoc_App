@@ -1,40 +1,43 @@
-import 'package:doc_doc/core/helpers/extensions.dart';
-import 'package:doc_doc/core/themeing/colors.dart';
-import 'package:doc_doc/core/themeing/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/funtions/error_state_fun.dart';
+import '../../../../core/funtions/succ_state_fun.dart';
 import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/helpers/validation.dart';
-import '../../../../core/routing/routes.dart';
+import '../../../../core/themeing/colors.dart';
+import '../../../../core/themeing/text_style.dart';
 import '../../../../core/utils/strings.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../logic/cubit/login_cubit.dart';
-import '../../logic/cubit/login_state.dart';
 import '../../../../core/widgets/password_validations.dart';
+import '../../logic/cubit/signup_cubit.dart';
+import '../../logic/cubit/signup_state.dart';
 
-class LoginFormSection extends StatefulWidget {
-  const LoginFormSection({super.key});
+class SignUpFormSection extends StatefulWidget {
+  const SignUpFormSection({super.key});
 
   @override
-  State<LoginFormSection> createState() => _LoginFormSectionState();
+  State<SignUpFormSection> createState() => _SignUpFormSectionState();
 }
 
-class _LoginFormSectionState extends State<LoginFormSection> {
+class _SignUpFormSectionState extends State<SignUpFormSection> {
+  bool isPasswordObscureText = true;
+  bool isPasswordConfirmationObscureText = true;
+
   bool hasLowercase = false;
   bool hasUppercase = false;
   bool hasSpecialCharacters = false;
   bool hasNumber = false;
   bool hasMinLength = false;
+
   late TextEditingController passwordController;
 
   @override
   void initState() {
     super.initState();
-    passwordController = context.read<LoginCubit>().passwordController;
+    passwordController = context.read<SignupCubit>().passwordController;
     setupPasswordControllerListener();
   }
 
@@ -53,24 +56,40 @@ class _LoginFormSectionState extends State<LoginFormSection> {
 
   @override
   Widget build(BuildContext context) {
-    LoginCubit loginCubit = BlocProvider.of<LoginCubit>(context);
-    return BlocConsumer<LoginCubit, LoginState>(
+    SignupCubit signUpCubit = BlocProvider.of<SignupCubit>(context);
+    return BlocConsumer<SignupCubit, SignupState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (loginResponse) => context.pushNamed(Routes.homeScreen),
-          error: (error) => setupErrorState(context, error),
+          signupSuccess: (loginResponse) => showSuccessDialog(context),
+          signupError: (error) => setupErrorState(context, error),
         );
       },
       builder: (context, state) {
         return Form(
-          key: loginCubit.formKey,
-          autovalidateMode: loginCubit.loginAutoValidateMode,
+          key: signUpCubit.formKey,
+          autovalidateMode: signUpCubit.loginAutoValidateMode,
           child: Column(
             children: [
-              //! Sign In Email
+              //! Sign Up Name
+              AppTextFormField(
+                hintText: AppStrings.name,
+                controller: signUpCubit.nameController,
+                keyboardType: TextInputType.text,
+                validator: Validation.validateName,
+              ),
+              verticalSpace(16),
+              //! Sign Up Phone
+              AppTextFormField(
+                hintText: AppStrings.phone,
+                controller: signUpCubit.phoneController,
+                keyboardType: TextInputType.number,
+                validator: Validation.validatePhone,
+              ),
+              verticalSpace(16),
+              //! Sign Up Email
               AppTextFormField(
                 hintText: AppStrings.email,
-                controller: loginCubit.emailController,
+                controller: signUpCubit.emailController,
                 keyboardType: TextInputType.emailAddress,
                 validator: Validation.validateEmail,
               ),
@@ -80,9 +99,22 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                 hintText: AppStrings.password,
                 obscureText: true,
                 suffixIcon: true,
-                controller: loginCubit.passwordController,
+                controller: signUpCubit.passwordController,
                 keyboardType: TextInputType.text,
                 validator: Validation.validatePassword,
+              ),
+              verticalSpace(16),
+              //! Sign In Confirm Password
+              AppTextFormField(
+                hintText: AppStrings.confirmPassword,
+                obscureText: true,
+                suffixIcon: true,
+                controller: signUpCubit.passwordConfirmationController,
+                keyboardType: TextInputType.text,
+                validator: (value) => Validation.validateConfirmPassword(
+                  value,
+                  signUpCubit.passwordController.text,
+                ),
               ),
               verticalSpace(24),
               //! Password Validations
@@ -94,24 +126,16 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                 hasMinLength: hasMinLength,
               ),
               verticalSpace(24),
-              //! Forgot Password
-              Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: Text(
-                  AppStrings.loginForgotPassword,
-                  style: AppTextStyles.inter400primaryColor12,
-                ),
-              ),
-              verticalSpace(41),
               //! Sign In Button
-              state is Loading
+              state is SignupLoading
                   ? const CircularProgressIndicator(
-                      color: ColorsManager.primaryColor)
+                      color: ColorsManager.primaryColor,
+                    )
                   : CustomButton(
-                      buttonText: AppStrings.login,
+                      buttonText: AppStrings.signUpCreateAccount,
                       textStyle: AppTextStyles.inter600whiteColor16,
                       onPressed: () {
-                        validateThenLogin(loginCubit);
+                        validateThenSignUp(signUpCubit);
                       },
                     ),
             ],
@@ -121,13 +145,13 @@ class _LoginFormSectionState extends State<LoginFormSection> {
     );
   }
 
-  void validateThenLogin(LoginCubit loginCubit) {
-    if (loginCubit.formKey.currentState!.validate()) {
-      loginCubit.formKey.currentState!.save();
-      loginCubit.emitLoginStates();
+  void validateThenSignUp(SignupCubit signUpCubit) {
+    if (signUpCubit.formKey.currentState!.validate()) {
+      signUpCubit.formKey.currentState!.save();
+      signUpCubit.emitSignupStates();
     } else {
       setState(() {
-        loginCubit.loginAutoValidateMode = AutovalidateMode.always;
+        signUpCubit.loginAutoValidateMode = AutovalidateMode.always;
       });
     }
   }

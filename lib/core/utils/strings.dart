@@ -7,12 +7,14 @@ abstract class AppStrings {
   static const loginWelcomeBack = 'Welcome Back';
   static const loginSubtitle =
       'We\'re excited to have you back, can\'t wait to\n see what you\'ve been up to since you last\n logged in.';
-  static const loginEmail = 'Email';
-  static const loginPassword = 'Password';
+  static const email = 'Email';
+  static const password = 'Password';
   static const loginForgotPassword = 'Forgot Password?';
   static const loginRememberMe = 'Remember Me';
   static const login = 'Login';
   static const alreadyHaveAccount = 'Already have an account yet? ';
+  static const dontHaveAccount = 'Don\'t have an account yet? ';
+  static const signIn = 'Sign In';
   static const signUp = 'Sign Up';
   static const termsAndConditionsPart1 = "By logging, you agree to our ";
   static const termsAndConditionsPart2 = "Terms & Conditions ";
@@ -25,4 +27,16 @@ abstract class AppStrings {
   static const numberRequired = 'At least 1 number';
   static const minLengthRequired = 'At least 8 characters long';
   static const gotIt = 'Got it';
+
+  // sign up
+  static const signUpCreateAccount = 'Create Account';
+  static const signUpSubtitle =
+      'Sign up now and start exploring all that our\n app has to offer. We\'re excited to welcome\n you to our community!';
+
+  static const name = "Name";
+  static const phone = "Phone";
+  static const confirmPassword = "Confirm Password";
+  static const signupSuccess = 'Signup Successful';
+  static const signupSuccessMessage = 'Congratulations, you have signed up successfully!';
+  static const signupContinue = 'Continue';
 }

@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   AutovalidateMode loginAutoValidateMode = AutovalidateMode.disabled;
 
 
-  void emitLoginStates(LoginRequestBody loginRequestBody) async {
+  void emitLoginStates() async {
     emit(const LoginState.loading());
     
     final response = await loginRepo.login(
