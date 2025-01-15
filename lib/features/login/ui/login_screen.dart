@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                 verticalSpace(26),
                 const LoginHeaderSection(),
                 verticalSpace(36),
-                LoginFormSection(),
+                const LoginFormSection(),
                 verticalSpace(36),
                 const LoginFooterSection()
               ],

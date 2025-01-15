@@ -15,21 +15,21 @@ class TermsAndConditionsText extends StatelessWidget {
         children: [
           TextSpan(
             text: AppStrings.termsAndConditionsPart1,
-            style: AppTextStyles.inter400textFormFieldInputColor11
-                .copyWith(color: ColorsManager.textFormFieldSuffixIconColor),
+            style: AppTextStyles.inter400darkBlueColor11
+                .copyWith(color: ColorsManager.darkGrey),
           ),
           TextSpan(
             text: AppStrings.termsAndConditionsPart2,
-            style: AppTextStyles.inter400textFormFieldInputColor11,
+            style: AppTextStyles.inter400darkBlueColor11,
           ),
           TextSpan(
             text: AppStrings.termsAndConditionsPart3,
-            style: AppTextStyles.inter400textFormFieldInputColor11
-                .copyWith(color: ColorsManager.textFormFieldSuffixIconColor),
+            style: AppTextStyles.inter400darkBlueColor11
+                .copyWith(color: ColorsManager.darkGrey),
           ),
           TextSpan(
             text: AppStrings.termsAndConditionsPart4,
-            style: AppTextStyles.inter400textFormFieldInputColor11,
+            style: AppTextStyles.inter400darkBlueColor11,
           ),
         ],
       ),

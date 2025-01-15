@@ -38,24 +38,21 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       obscureText: (widget.obscureText && _obscureText),
       keyboardType: widget.keyboardType,
       style: AppTextStyles.inter500lightGrey14
-          .copyWith(color: ColorsManager.textFormFieldInputColor),
+          .copyWith(color: ColorsManager.darkBlue),
       decoration: InputDecoration(
         isDense: (widget.isDense != null) ? widget.isDense : false,
         contentPadding: widget.contentPadding ??
             EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
-        enabledBorder:
-            getBorderStyle(color: ColorsManager.textFormFieldBorderColor),
+        enabledBorder: getBorderStyle(color: ColorsManager.lighterGray),
         focusedBorder: getBorderStyle(color: ColorsManager.primaryColor),
-        errorBorder:
-            getBorderStyle(color: ColorsManager.textFormFieldErrorColor),
-        focusedErrorBorder:
-            getBorderStyle(color: ColorsManager.textFormFieldErrorColor),
+        errorBorder: getBorderStyle(color: ColorsManager.errorColor),
+        focusedErrorBorder: getBorderStyle(color: ColorsManager.errorColor),
         errorStyle: AppTextStyles.inter400primaryColor12.copyWith(
-          color: ColorsManager.textFormFieldErrorColor,
+          color: ColorsManager.errorColor,
         ),
         hintStyle: AppTextStyles.inter500lightGrey14,
         hintText: widget.hintText,
-        fillColor: ColorsManager.textFormFieldBackgroundColor,
+        fillColor: ColorsManager.moreLightGray,
         filled: true,
         suffixIcon: widget.suffixIcon
             ? IconButton(
@@ -63,7 +60,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
                   _obscureText
                       ? Icons.remove_red_eye
                       : Icons.visibility_off_outlined,
-                  color: ColorsManager.textFormFieldSuffixIconColor,
+                  color: ColorsManager.darkGrey,
                 ),
                 onPressed: () {
                   setState(() {
