@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.2+1
 
 environment:
   sdk: ^3.5.3
@@ -65,6 +65,7 @@ dependencies:
   email_validator: ^3.0.0
   # A build system for Dart code generation and modular compilation
   build_runner: ^2.4.7
+  firebase_core: ^3.10.0
 
 dev_dependencies:
   flutter_test:
@@ -121,3 +122,11 @@ flutter:
 
   #! command for generate auto generated code (dart run build_runner build --delete-conflicting-outputs)
   #! command for generate release build  appp (flutter run --release -t lib/main_production.dart --flavor production)
+  #! command for generate build   apk         (flutter build apk --flavor Production -t lib/main_production.dart)
+  
+  #! commands for generate apk and upload to firebase automated using fastlane:
+  #! from here: D:\Flutter projects\projects\doc_doc\android>
+  #! (1) fastlane init
+  #! (2) fastlane add_plugin firebase_app_distribution 
+  #! (3) firebase login:ci  => get token will need to it in the Fasrfile
+  #! (4) fastlane android (Lane Name: firebase_distribution)
